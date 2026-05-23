@@ -1,73 +1,106 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ANSWERS</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = { darkMode: 'class' };
-  </script>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ANSWERS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: "class" };
+    </script>
 
-  <script src="unread.js"></script>
-  <style>
-    body { font-family: system-ui, -apple-system, sans-serif; }
-    .card {
-      transition: all 0.1s ease;
-    }
-    .card:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    }
-    .dark .card {
-      background-color: #1f2937;
-      border-color: #374151;
-    }
-  </style>
+    <script src="unread.js"></script>
+    <style>
+        body {
+          font-family:
+            system-ui,
+            -apple-system,
+            sans-serif;
+        }
+        .card {
+          transition: all 0.1s ease;
+        }
+        .card:hover {
+          transform: translateY(-1px);
+          box-shadow:
+            0 4px 6px -1px rgb(0 0 0 / 0.1),
+            0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .dark .card {
+          background-color: #1f2937;
+          border-color: #374151;
+        }
+    </style>
 </head>
-<body class="bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
-  <div class="max-w-[1400px] mx-auto p-4">
+<body
+        class="bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-100"
+>
+<div class="max-w-[1400px] mx-auto p-4">
     <!-- Tabs -->
-    <div class="flex gap-1 mb-4 border-b border-slate-300 dark:border-slate-700">
-        <button id="dark-toggle"
-                class="px-3 py-1.5 text-sm rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-800">
-          🌓
+    <div
+            class="flex gap-1 mb-4 border-b border-slate-300 dark:border-slate-700"
+    >
+        <button
+                id="dark-toggle"
+                class="px-3 py-1.5 text-sm rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-800"
+        >
+            🌙
         </button>
-        <button id="save-read-ids-btn"
+        <button
+                id="save-read-ids-btn"
                 title="Export merged Read state (localStorage agents_read_ids + current read.js) as var READ = [...] "
-                class="px-3 py-1.5 text-sm rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-800">
-          💾
+                class="px-3 py-1.5 text-sm rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-800"
+        >
+            💾
         </button>
-        <button id="load-read-ids-btn"
+        <button
+                id="load-read-ids-btn"
                 title="Reset: clear session (localStorage agents_read_ids) and reload purely from read.js + unread.js files"
-                class="px-3 py-1.5 text-sm rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-800">
-          📂
+                class="px-3 py-1.5 text-sm rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-800"
+        >
+            📂
         </button>
-        <button id="reload-disk-btn"
+        <button
+                id="reload-disk-btn"
                 title="Force re-read unread.js + read.js from disk (bypasses browser cache)"
-                class="px-3 py-1.5 text-sm rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-800">
-          ⟳
+                class="px-3 py-1.5 text-sm rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-800"
+        >
+            ⟳
         </button>
-    
-      <button onclick="switchTab(0)" id="tab-0"
-              class="tab-button px-5 py-2 font-medium border-b-2 border-emerald-600 text-emerald-600 dark:text-emerald-400">
-        Unread <span id="count-unread" class="ml-1 text-xs px-1.5 py-0.5 rounded bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300">0</span>
-      </button>
-      <button onclick="switchTab(1)" id="tab-1"
-              class="tab-button px-5 py-2 font-medium text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">
-        Read <span id="count-read" class="ml-1 text-xs px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800">0</span>
-      </button>
+
+        <button
+                onclick="switchTab(0)"
+                id="tab-0"
+                class="tab-button px-5 py-2 font-medium border-b-2 border-emerald-600 text-emerald-600 dark:text-emerald-400"
+        >
+            Unread
+            <span
+                    id="count-unread"
+                    class="ml-1 text-xs px-1.5 py-0.5 rounded bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300"
+            >0</span
+            >
+        </button>
+        <button
+                onclick="switchTab(1)"
+                id="tab-1"
+                class="tab-button px-5 py-2 font-medium text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
+        >
+            Read
+            <span
+                    id="count-read"
+                    class="ml-1 text-xs px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800"
+            >0</span
+            >
+        </button>
     </div>
 
-    <!-- 3-Column Grid -->
-    <div id="grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 min-h-[60vh] items-start">
-      <!-- Cards rendered by JS -->
-    </div>
+    <div
+            id="grid"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 min-h-[60vh] items-start"
+    ></div>
+</div>
 
-
-  </div>
-
-  <script>
+<script>
     let unread = [];
     let read = [];
     let allBlocks = [];
@@ -78,55 +111,65 @@
         h = (h << 5) - h + text.charCodeAt(i);
         h |= 0;
       }
-      return 'id_' + Math.abs(h).toString(36);
+      return "id_" + Math.abs(h).toString(36);
     }
 
     function normalizeData(rawArray) {
       return rawArray.map((item) => {
-        if (typeof item === 'string') {
+        if (typeof item === "string") {
           return {
             id: makeId(item),
-            text: item
+            text: item,
           };
         } else {
           return {
-            id: item.id || makeId(item.text || ''),
-            text: item.text || item
+            id: item.id || makeId(item.text || ""),
+            text: item.text || item,
           };
         }
       });
     }
 
     function loadData() {
-
-        unread = normalizeData(DATA);
-        read = normalizeData(READ);
+      unread = normalizeData(DATA);
+      read = normalizeData(READ);
 
       allBlocks = [...unread, ...read];
 
-      const allIds = new Set();
-      unread = unread.filter(item => {
-        if (allIds.has(item.id)) return false;
-        allIds.add(item.id);
-        return true;
-      });
-      read = read.filter(item => {
-        if (allIds.has(item.id)) return false;
-        allIds.add(item.id);
+      const seenTexts = new Set();
+
+      unread = unread.filter((item) => {
+        const key = item.text.trim();
+
+        if (seenTexts.has(key)) {
+          return false;
+        }
+
+        seenTexts.add(key);
         return true;
       });
 
-      // Apply session state from localStorage (which blocks the user has moved to Read in this browser session)
+      read = read.filter((item) => {
+        const key = item.text.trim();
+
+        if (seenTexts.has(key)) {
+          return false;
+        }
+
+        seenTexts.add(key);
+        return true;
+      });
+
       let sessionReadIds = [];
       try {
-        const saved = localStorage.getItem('agents_read_ids');
+        const saved = localStorage.getItem("agents_read_ids");
         if (saved) sessionReadIds = JSON.parse(saved);
       } catch {}
 
       if (sessionReadIds.length > 0) {
         const sessionSet = new Set(sessionReadIds);
-        const moved = unread.filter(item => sessionSet.has(item.id));
-        unread = unread.filter(item => !sessionSet.has(item.id));
+        const moved = unread.filter((item) => sessionSet.has(item.id));
+        unread = unread.filter((item) => !sessionSet.has(item.id));
         read = [...read, ...moved];
       }
 
@@ -144,60 +187,73 @@
         read.sort((a, b) => a.text.length - b.text.length);
       }
 
-      document.getElementById('tab-0').classList.toggle('border-b-2', tab === 0);
-      document.getElementById('tab-0').classList.toggle('border-emerald-600', tab === 0);
-      document.getElementById('tab-1').classList.toggle('border-b-2', tab === 1);
-      document.getElementById('tab-1').classList.toggle('border-emerald-600', tab === 1);
+      document
+        .getElementById("tab-0")
+        .classList.toggle("border-b-2", tab === 0);
+      document
+        .getElementById("tab-0")
+        .classList.toggle("border-emerald-600", tab === 0);
+      document
+        .getElementById("tab-1")
+        .classList.toggle("border-b-2", tab === 1);
+      document
+        .getElementById("tab-1")
+        .classList.toggle("border-emerald-600", tab === 1);
       render();
     }
 
     function render() {
-      const grid = document.getElementById('grid');
-      grid.innerHTML = '';
+      const grid = document.getElementById("grid");
+      grid.innerHTML = "";
 
       const data = currentTab === 0 ? unread : read;
 
-      document.getElementById('count-unread').textContent = unread.length;
-      document.getElementById('count-read').textContent = read.length;
+      document.getElementById("count-unread").textContent = unread.length;
+      document.getElementById("count-read").textContent = read.length;
 
       if (data.length === 0) {
-        const empty = document.createElement('div');
-        empty.className = 'col-span-3 p-8 text-center text-slate-400';
+        const empty = document.createElement("div");
+        empty.className = "col-span-3 p-8 text-center text-slate-400";
         grid.appendChild(empty);
         return;
       }
 
-      data.forEach(item => {
-        const card = document.createElement('div');
+      data.forEach((item) => {
+        const card = document.createElement("div");
         card.className = `card border rounded-xl p-4 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 cursor-pointer relative`;
 
-        const textDiv = document.createElement('div');
+        const textDiv = document.createElement("div");
         textDiv.className = `text-sm leading-snug text-slate-700 dark:text-slate-200 whitespace-pre-wrap pr-8`;
         textDiv.innerHTML = highlightEnglish(item.text);
 
-        const copyBtn = document.createElement('button');
+        const copyBtn = document.createElement("button");
         copyBtn.className = `absolute top-2 right-2 p-1 rounded text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors`;
-        copyBtn.title = 'Copy';
+        copyBtn.title = "Copy";
         copyBtn.innerHTML = `
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-          </svg>
-        `;
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+        </svg>
+      `;
         copyBtn.onclick = (e) => {
           e.stopPropagation();
-          navigator.clipboard.writeText(item.text).then(() => {
-            const orig = copyBtn.innerHTML;
-            copyBtn.innerHTML = '✅';
-            setTimeout(() => { copyBtn.innerHTML = orig; }, 800);
-          }).catch(() => {
-            // fallback
-            const ta = document.createElement('textarea');
-            ta.value = item.text;
-            document.body.appendChild(ta);
-            ta.select();
-            document.execCommand('copy');
-            document.body.removeChild(ta);
-          });
+          navigator.clipboard
+            .writeText(item.text)
+            .then(() => {
+              const orig = copyBtn.innerHTML;
+              copyBtn.innerHTML = "✅";
+              setTimeout(() => {
+                copyBtn.innerHTML = orig;
+              }, 800);
+            })
+            .catch(() => {
+              // fallback
+              const ta = document.createElement("textarea");
+              ta.value = item.text;
+              document.body.appendChild(ta);
+              ta.select();
+              document.execCommand("copy");
+              document.body.removeChild(ta);
+            });
         };
 
         card.appendChild(textDiv);
@@ -209,39 +265,52 @@
     }
 
     function escapeHtml(str) {
-      return str.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+      return str.replace(
+        /[&<>"']/g,
+        (m) =>
+          ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#039;",
+          })[m],
+      );
     }
 
     function highlightEnglish(text) {
-      return text.replace(/([A-Za-z][A-Za-z0-9 ,.!?'"`\-:;()\/\\]*[.!?]?)/g, (match) => {
-        if (/[А-Яа-яЁё]/.test(match)) return escapeHtml(match);
-        const clean = match.trim();
-        if (clean.length < 4) return escapeHtml(match);
+      return text.replace(
+        /([A-Za-z][A-Za-z0-9 ,.!?'"`\-:;()\/\\]*[.!?]?)/g,
+        (match) => {
+          if (/[А-Яа-яЁё]/.test(match)) return escapeHtml(match);
+          const clean = match.trim();
+          if (clean.length < 4) return escapeHtml(match);
 
-        const parts = match.split(/((?:WRONG|CORRECT):)/i);
-        let result = '';
-        for (let i = 0; i < parts.length; i++) {
-          const part = parts[i];
-          if (!part) continue;
-          if (/^(?:WRONG|CORRECT):$/i.test(part)) {
-            const isWrong = /^WRONG:/i.test(part);
-            const cls = isWrong
-              ? 'text-red-600 dark:text-red-400 font-semibold'
-              : 'text-emerald-600 dark:text-emerald-400 font-semibold';
-            result += `<span class="${cls}">${escapeHtml(part)}</span>`;
-          } else {
-            result += `<span class="text-blue-400 dark:text-blue-300 font-medium">${escapeHtml(part)}</span>`;
+          const parts = match.split(/((?:WRONG|CORRECT):)/i);
+          let result = "";
+          for (let i = 0; i < parts.length; i++) {
+            const part = parts[i];
+            if (!part) continue;
+            if (/^(?:WRONG|CORRECT):$/i.test(part)) {
+              const isWrong = /^WRONG:/i.test(part);
+              const cls = isWrong
+                ? "text-red-600 dark:text-red-400 font-semibold"
+                : "text-emerald-600 dark:text-emerald-400 font-semibold";
+              result += `<span class="${cls}">${escapeHtml(part)}</span>`;
+            } else {
+              result += `<span class="text-blue-400 dark:text-blue-300 font-medium">${escapeHtml(part)}</span>`;
+            }
           }
-        }
-        return result;
-      });
+          return result;
+        },
+      );
     }
 
     function moveItem(id, fromTab) {
       let fromList = fromTab === 0 ? unread : read;
       let toList = fromTab === 0 ? read : unread;
 
-      const index = fromList.findIndex(i => i.id === id);
+      const index = fromList.findIndex((i) => i.id === id);
       if (index === -1) return;
 
       const item = fromList.splice(index, 1)[0];
@@ -252,86 +321,98 @@
       fromList.sort(byLength);
 
       try {
-        const readIds = read.map(i => i.id);
-        localStorage.setItem('agents_read_ids', JSON.stringify(readIds));
+        const readIds = read.map((i) => i.id);
+        localStorage.setItem("agents_read_ids", JSON.stringify(readIds));
       } catch (e) {}
 
       render();
     }
 
     function toggleDark() {
-      document.documentElement.classList.toggle('dark');
+      document.documentElement.classList.toggle("dark");
     }
 
     function initDarkMode() {
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.classList.add('dark');
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.documentElement.classList.add("dark");
       }
     }
 
-    const darkBtn = document.getElementById('dark-toggle');
+    const darkBtn = document.getElementById("dark-toggle");
     if (darkBtn) {
-      darkBtn.addEventListener('click', toggleDark);
+      darkBtn.addEventListener("click", toggleDark);
     }
 
-    const saveBtn = document.getElementById('save-read-ids-btn');
-    const loadBtn = document.getElementById('load-read-ids-btn');
-    const reloadBtn = document.getElementById('reload-disk-btn');
+    const saveBtn = document.getElementById("save-read-ids-btn");
+    const loadBtn = document.getElementById("load-read-ids-btn");
+    const reloadBtn = document.getElementById("reload-disk-btn");
 
-    if (saveBtn) saveBtn.addEventListener('click', exportReadJs);
-    if (loadBtn) loadBtn.addEventListener('click', importFromReadJs);
-    if (reloadBtn) reloadBtn.addEventListener('click', () => location.reload(true));
+    if (saveBtn) saveBtn.addEventListener("click", exportReadJs);
+    if (loadBtn) loadBtn.addEventListener("click", importFromReadJs);
+    if (reloadBtn)
+      reloadBtn.addEventListener("click", () => location.reload(true));
 
-function exportReadJs() {
-  console.log('SAVE BUTTON CLICKED');
-  const lsRaw = localStorage.getItem('agents_read_ids');
-  console.log('localStorage agents_read_ids:', lsRaw);
-  console.log('READ from read.js (global):', typeof READ !== 'undefined' ? READ : 'undefined');
+    function exportReadJs() {
+      console.log("SAVE BUTTON CLICKED");
+      const lsRaw = localStorage.getItem("agents_read_ids");
+      console.log("localStorage agents_read_ids:", lsRaw);
+      console.log(
+        "READ from read.js (global):",
+        typeof READ !== "undefined" ? READ : "undefined",
+      );
 
-  let ids = [];
-  try {
-    const s = localStorage.getItem('agents_read_ids');
-    if (s) ids = JSON.parse(s);
-  } catch {}
-  if (!Array.isArray(ids)) ids = [];
+      let ids = [];
+      try {
+        const s = localStorage.getItem("agents_read_ids");
+        if (s) ids = JSON.parse(s);
+      } catch {}
+      if (!Array.isArray(ids)) ids = [];
 
-  const readSet = new Set(ids);
+      const readSet = new Set(ids);
 
-  const readItems = [];
-  const unreadItems = [];
+      const readItems = [];
+      const unreadItems = [];
 
-  allBlocks.forEach(b => {
-    if (readSet.has(b.id)) {
-      readItems.push({ id: b.id, text: b.text });
-    } else {
-      unreadItems.push({ id: b.id, text: b.text });
+      allBlocks.forEach((b) => {
+        if (readSet.has(b.id)) {
+          readItems.push({ id: b.id, text: b.text });
+        } else {
+          unreadItems.push({ id: b.id, text: b.text });
+        }
+      });
+
+      readItems.sort((a, b) => a.text.length - b.text.length);
+      unreadItems.sort((a, b) => a.text.length - b.text.length);
+
+      const fileContent =
+        "var READ = " +
+        JSON.stringify(readItems, null, 2) +
+        ";\n\n" +
+        "var DATA = " +
+        JSON.stringify(unreadItems, null, 2) +
+        ";\n";
+
+      console.log("Generated unread.js file:", fileContent);
+
+      const blob = new Blob([fileContent], {
+        type: "application/javascript",
+      });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "unread.js";
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => {
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }, 100);
     }
-  });
-
-  readItems.sort((a, b) => a.text.length - b.text.length);
-  unreadItems.sort((a, b) => a.text.length - b.text.length);
-
-  const fileContent =
-    'var READ = ' + JSON.stringify(readItems, null, 2) + ';\n\n' +
-    'var DATA = ' + JSON.stringify(unreadItems, null, 2) + ';\n';
-
-  console.log('Generated unread.js file:', fileContent);
-
-  const blob = new Blob([fileContent], {type: 'application/javascript'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'unread.js';
-  document.body.appendChild(a);
-  a.click();
-  setTimeout(() => {
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  }, 100);
-}
 
     function importFromReadJs() {
-      try { localStorage.removeItem('agents_read_ids'); } catch {}
+      try {
+        localStorage.removeItem("agents_read_ids");
+      } catch {}
       unread = [];
       read = [];
       loadData();
@@ -352,16 +433,16 @@ function exportReadJs() {
 
       switchTab(0);
 
-      document.addEventListener('keydown', (e) => {
-        if (e.key === '/' && document.activeElement.tagName === 'BODY') {
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "/" && document.activeElement.tagName === "BODY") {
           e.preventDefault();
-          const firstCard = document.querySelector('#grid > div');
+          const firstCard = document.querySelector("#grid > div");
           if (firstCard) firstCard.click();
         }
       });
     }
 
     window.onload = init;
-  </script>
+</script>
 </body>
 </html>
