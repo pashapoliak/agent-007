@@ -1,0 +1,42 @@
+{
+  "filters": {
+    "ids": {
+      "presence": "True",
+      "clipIds": [
+        "11a4482c-e662-4491-bdaf-dcba4079515e",
+        "03b346cb-c3e4-4f22-86ae-b268c79c7acd",
+        "95a7d10f-b587-4477-8aae-67c4ecacc435",
+        "12467253-a809-420d-8704-c0191d0b68b5",
+        "4ceba494-3e20-4df6-af26-92f623acc25c",
+        "a1ced73c-76bf-476c-9f01-5054a7d72b00",
+        "80936c3b-519b-4c0a-a0cd-48dedcb5c800",
+        "baf99797-0dfe-4ed6-b48f-8028ad2fd988",
+        "e1eb153a-aefb-40ba-a3cb-2dc0ce7dc559",
+        "401724fa-3bf7-4cfa-80c9-30b2fc4b988c",
+        "3a2cc090-e0cd-438b-9f9a-f1a8427321f5",
+        "7ca850ac-1982-4878-a224-3f03eeb8de7d",
+        "bd1c924d-924a-42d1-9635-7dd9fe5d7a9d",
+        "059a68ce-63f7-400f-9643-b8254bdff8f7",
+        "a8bd2ca0-9522-463e-ac10-29c7753c7ced",
+        "b5f5c9bb-1ac6-4bcc-a044-f3456a1570c4",
+        "633a442b-2848-488d-acf3-0dea13d1305b",
+        "527be586-8f5f-4c3e-aa67-323a2f1644cb",
+        "d0a9990c-9bb4-4875-931c-5744cdab33ed",
+        "fc449de2-18b7-48c2-8027-ca5b34eb0a87",
+        "cbe23b29-46e0-4792-8f38-bd1b1f11eada",
+        "b385ec47-5ba2-4212-b3a9-5dacf1da4566",
+        "bdf9887a-1ced-4d96-8a10-a9b0d6550ba3",
+        "3bc739d7-0fd1-4d7b-a407-f70824ffa552",
+        "9aaeb95e-5137-496a-9e49-0d96cfcbe09d",
+        "82bce6d9-df2d-4d3b-a62e-9d5686e32698",
+        "c4913817-9844-4cb8-b9f1-a0d0f492dcb0",
+        "703583ca-69d5-4f26-ad07-2d7324f355ae",
+        "78a30879-4c43-4a66-ac5d-4340b1a9b104",
+        "b91a3146-4563-457e-81c0-886791a2bc2a",
+        "1ccc143f-f781-4a49-b939-d7609512a95f",
+        "d20b15aa-715e-496d-85b6-f5dc984053e6"
+      ]
+    }
+  },
+  "limit": 32
+}

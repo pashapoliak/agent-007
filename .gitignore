@@ -1,0 +1,21 @@
+# Large synced Suno archives (populated at runtime via /sync or load-from-txt)
+json/profiles/
+
+# Keep small seed/config files
+!json/profiles.txt
+!json/favorites.json
+!json/likes.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+env/
+venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
